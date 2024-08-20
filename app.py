@@ -32,10 +32,6 @@ model = genai.GenerativeModel(
 # Sample FAQs
 faqs = [
     {
-        "question": "What is the difference between a 401(k) and an IRA?",
-        "answer": "A 401(k) is an employer-sponsored retirement plan, while an IRA (Individual Retirement Account) is opened by an individual. Both offer tax advantages but have different contribution limits and rules."
-    },
-    {
         "question": "How much should I save for retirement?",
         "answer": "A general rule of thumb is to save 10-15% of your income for retirement. However, the exact amount depends on your age, lifestyle, and retirement goals."
     },
