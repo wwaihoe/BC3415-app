@@ -45,6 +45,22 @@ faqs = [
     }
 ]
 
+# Sample jokes
+jokes = [
+    {
+        "question": "Why did the banker switch careers?",
+        "answer": "Because he lost interest!"
+    },
+    {
+        "question": "Why was the bond so excited to go to the party?",
+        "answer": "It heard it would be a real interest-ing time!"
+    },
+    {
+        "question": "Why did the stock market break up with the economy?",
+        "answer": "It couldn’t handle the constant ups and downs!"
+    }
+]
+
 
 @app.route('/')
 def index():
@@ -63,6 +79,9 @@ def chat():
     response = chat_session.send_message(user_message)
     return jsonify({'response': response.text})
 
+@app.route('/financejokes')
+def financejokes():
+    return render_template('jokes.html', jokes=jokes)
 
 if __name__ == '__main__':
     app.run(debug=True)

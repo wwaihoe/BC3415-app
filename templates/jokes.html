@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with Financial Advisor</title>
+    <title>Financial Advisor FAQs</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
 </head>
 <body>
     <header>
-        <h1>Chat with Financial Advisor</h1>
+        <h1>Finance Jokes</h1>
         <nav>
             <a href="{{ url_for('index') }}"><button>Home</button></a>
             <a href="{{ url_for('chatbot') }}"><button>Chat with Advisor</button></a>
@@ -16,12 +16,14 @@
         </nav>
     </header>
     <main>
-        <div class="chat-container">
-            <div id="chat-messages"></div>
-            <input type="text" id="user-input" placeholder="Ask a financial question...">
-            <button onclick="sendMessage()">Send</button>
+        <div class="joke-container">
+            {% for joke in jokes %}
+            <div class="joke-item">
+                <h2>{{ joke.question }}</h2>
+                <p>{{ joke.answer }}</p>
+            </div>
+            {% endfor %}
         </div>
     </main>
-    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>
