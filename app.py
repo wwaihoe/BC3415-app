@@ -8,6 +8,7 @@ load_dotenv()
 app = Flask(__name__, static_folder=os.path.abspath('static'))
 
 import google.generativeai as genai
+import textblob
 
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
@@ -82,6 +83,16 @@ def chat():
 @app.route('/financejokes')
 def financejokes():
     return render_template('jokes.html', jokes=jokes)
+
+@app.route('/sentimentanalysis')
+def sentimentanalysis():
+    return render_template('sentiment_analysis.html')
+
+@app.route('/sentimentanalysisquery', methods=['POST'])
+def sentimentanalysisquery():
+    text = request.json['text']
+    sentiment = textblob.TextBlob(text).sentiment
+    return jsonify({'polarity': sentiment.polarity, 'subjectivity': sentiment.subjectivity})
 
 if __name__ == '__main__':
     app.run(debug=True)

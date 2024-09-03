@@ -40,3 +40,21 @@ document.getElementById('user-input').addEventListener('keypress', function(e) {
         sendMessage();
     }
 });
+
+
+function querySentiment() {
+    const sentimentInput = document.getElementById('sentiment-input');
+    fetch('/sentimentanalysisquery', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: sentimentInput.value }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        const sentimentOutput = document.getElementById('sentiment-output');
+        textOutput = "Polarity: " + data.polarity + "\r\nSubjectivity: " + data.subjectivity;
+        sentimentOutput.textContent = textOutput;
+    });
+}

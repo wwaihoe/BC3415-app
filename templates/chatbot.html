@@ -13,13 +13,16 @@
             <a href="{{ url_for('index') }}"><button>Home</button></a>
             <a href="{{ url_for('chatbot') }}"><button>Chat with Advisor</button></a>
             <a href="{{ url_for('financejokes') }}"><button>Jokes</button></a>
+            <a href="{{ url_for('sentimentanalysis') }}"><button>Sentiment Analysis</button></a>
         </nav>
     </header>
     <main>
         <div class="chat-container">
             <div id="chat-messages"></div>
-            <input type="text" id="user-input" placeholder="Ask a financial question...">
-            <button onclick="sendMessage()">Send</button>
+            <div id="chat-inputs">
+                <input type="text" id="user-input" placeholder="Ask a financial question...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
         </div>
     </main>
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
