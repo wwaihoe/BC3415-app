@@ -8,19 +8,23 @@
 </head>
 <body>
     <header>
-        <h1>Sentiment Analysis</h1>
-        <nav>
-            <a href="{{ url_for('index') }}"><button>Home</button></a>
-            <a href="{{ url_for('chatbot') }}"><button>Chat with Advisor</button></a>
-            <a href="{{ url_for('financejokes') }}"><button>Jokes</button></a>
-            <a href="{{ url_for('sentimentanalysis') }}"><button>Sentiment Analysis</button></a>
-        </nav>
+        <div id="logo-text">
+            <img id="header-logo" src="{{ url_for('static', filename='images/fintech_logo.png') }}" alt="Financial Advisor Logo" width="60px" height="60px">
+            <h1>Sentiment Analysis</h1>
+        </div>
+        <div>
+            <nav>
+                <a href="{{ url_for('index') }}"><button>Home</button></a>
+                <a href="{{ url_for('chatbot') }}"><button>Chat with Advisor</button></a>
+                <a href="{{ url_for('financejokes') }}"><button>Jokes</button></a>
+                <a href="{{ url_for('sentimentanalysis') }}"><button>Sentiment Analysis</button></a>
+            </nav>
+        </div>
     </header>
     <main>
         <div class="query-container">
-            <textarea id="sentiment-input" name="sentiment-input" rows="4" placeholder="Input any text...">
-            </textarea>
-            <button onclick="querySentiment()">Send</button>
+            <textarea id="sentiment-input" name="sentiment-input" rows="4" placeholder="Input any text..."></textarea>
+            <button onclick="querySentiment()">></button>
         </div>
         <div id="sentiment-output">See sentiment results here</div>
     </main>

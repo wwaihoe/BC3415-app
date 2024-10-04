@@ -8,20 +8,25 @@
 </head>
 <body>
     <header>
-        <h1>Chat with Financial Advisor</h1>
-        <nav>
-            <a href="{{ url_for('index') }}"><button>Home</button></a>
-            <a href="{{ url_for('chatbot') }}"><button>Chat with Advisor</button></a>
-            <a href="{{ url_for('financejokes') }}"><button>Jokes</button></a>
-            <a href="{{ url_for('sentimentanalysis') }}"><button>Sentiment Analysis</button></a>
-        </nav>
+        <div id="logo-text">
+            <img id="header-logo" src="{{ url_for('static', filename='images/fintech_logo.png') }}" alt="Financial Advisor Logo" width="60px" height="60px">
+            <h1>Chat with Advisor</h1>
+        </div>
+        <div>
+            <nav>
+                <a href="{{ url_for('index') }}"><button>Home</button></a>
+                <a href="{{ url_for('chatbot') }}"><button>Chat with Advisor</button></a>
+                <a href="{{ url_for('financejokes') }}"><button>Jokes</button></a>
+                <a href="{{ url_for('sentimentanalysis') }}"><button>Sentiment Analysis</button></a>
+            </nav>
+        </div>
     </header>
     <main>
         <div class="chat-container">
             <div id="chat-messages"></div>
             <div id="chat-inputs">
                 <input type="text" id="user-input" placeholder="Ask a financial question...">
-                <button onclick="sendMessage()">Send</button>
+                <button onclick="sendMessage()">></button>
             </div>
         </div>
     </main>
