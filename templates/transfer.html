@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Advisor FAQs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div id="logo-text">
+            <img id="header-logo" src="{{ url_for('static', filename='images/fintech_logo.png') }}" alt="Financial Advisor Logo" width="60px" height="60px">
+            <h1>Transfer Crypto</h1>
+        </div>
+        <div>
+            <nav>
+                <a href="{{ url_for('index') }}"><button>Home</button></a>
+                <a href="{{ url_for('chatbot') }}"><button>Chat with Advisor</button></a>
+                <a href="{{ url_for('financejokes') }}"><button>Jokes</button></a>
+                <a href="{{ url_for('sentimentanalysis') }}"><button>Sentiment Analysis</button></a>
+                <a href="{{ url_for('transfer') }}"><button>Transfer Crypto</button></a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="transfer-container">
+            <div class="transfer-item">
+                <h2>Transfer Crypto</h2>
+                <p>Transfer your crypto to another wallet</p>
+            </div>
+            <div class="transfer-item">
+                <h2>Wallet Address</h2>
+                <input class="transfer-input" type="text" id="wallet-address" placeholder="Enter wallet address...">
+            </div>
+            <div class="transfer-item">
+                <h2>Transfer Amount</h2>
+                <input class="transfer-input" type="text" id="transfer-amount" placeholder="Enter amount...">
+            </div>
+            <div class="transfer-item">
+                <h2>Recipient Address</h2>
+                <input class="transfer-input" type="text" id="recipient-address" placeholder="Enter recipient address...">
+            </div>
+            <button onclick="transferCrypto()">Transfer</button>
+            <button onclick="viewTransaction()">View Previous Transaction</button>
+            <div id="transaction">
+                <h2 id="transaction-details-header"></h2>
+                <p id="view-payer"></p>
+                <p id="view-recipient"></p>
+                <p id="view-amount"></p>
+                <div id="transfer-output"></div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script>
+        
+        const contractAddress = "0x0fC5025C764cE34df352757e82f7B5c4Df39A836";
+        const abi=[
+            {
+                "inputs": [],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "inputs": [],
+                "name": "transaction",
+                "outputs": [
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "payer_add",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "payee_add",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "transfer_amount",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "transfer",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ];
+        const web3 = new Web3(Web3.givenProvider);
+        const contract = new web3.eth.Contract(abi, contractAddress);
+
+        async function transferCrypto() {
+            const accounts = await web3.eth.requestAccounts();
+            console.log(accounts);
+            const walletAddress = document.getElementById('wallet-address').value;
+            const transferAmount = document.getElementById('transfer-amount').value;
+            const recipientAddress = document.getElementById('recipient-address').value;
+            await contract.methods.transfer(walletAddress, recipientAddress, transferAmount).send({ from: accounts[0] });
+        }
+
+        async function viewTransaction() {
+            const result = await contract.methods.transaction().call();
+            console.log(result);
+            document.getElementById("transaction-details-header").innerText = "Transaction Details";
+            document.getElementById("view-payer").innerText = "Payer address " + result[0];
+            document.getElementById("view-recipient").innerText = "Payee address " + result[1];
+            document.getElementById("view-amount").innerText = "Amount " + result[2];
+        }
+
+    </script>
+</body>
+</html>

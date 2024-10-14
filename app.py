@@ -94,5 +94,9 @@ def sentimentanalysisquery():
     sentiment = textblob.TextBlob(text).sentiment
     return jsonify({'polarity': sentiment.polarity, 'subjectivity': sentiment.subjectivity})
 
+@app.route('/transfer')
+def transfer():
+    return render_template('transfer.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
