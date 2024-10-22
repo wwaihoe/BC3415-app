@@ -126,22 +126,22 @@
                 console.log(result);
                 if (result.ok) {
                     document.getElementById("transaction-details-header").innerText = "Transaction Details";
-                    document.getElementById("view-payer").innerText = "Payer address " + result[0];
-                    document.getElementById("view-recipient").innerText = "Payee address " + result[1];
-                    document.getElementById("view-amount").innerText = "Amount " + result[2];
+                    document.getElementById("view-payer").innerText = "Payer address: " + result[0];
+                    document.getElementById("view-recipient").innerText = "Payee address: " + result[1];
+                    document.getElementById("view-amount").innerText = "Amount: " + result[2];
                 } else {
                     document.getElementById("transaction-details-header").innerText = "Transaction Details";
-                    document.getElementById("view-payer").innerText = "Payer address " + "0x159cA92b12F67E5676d82C238f4906692618A555";
-                    document.getElementById("view-recipient").innerText = "Payee address " + "0x159cA92b12F67E5676d82C238f4906692618A555";
-                    document.getElementById("view-amount").innerText = "Amount " + "0";
+                    document.getElementById("view-payer").innerText = "Payer address: " + "0x159cA92b12F67E5676d82C238f4906692618A555";
+                    document.getElementById("view-recipient").innerText = "Payee address: " + "0x159cA92b12F67E5676d82C238f4906692618A555";
+                    document.getElementById("view-amount").innerText = "Amount: " + "0";
                 }
             }
             catch (error) {
                 console.error(error);
                 document.getElementById("transaction-details-header").innerText = "Transaction Details";
-                document.getElementById("view-payer").innerText = "Payer address " + "0x159cA92b12F67E5676d82C238f4906692618A555";
-                document.getElementById("view-recipient").innerText = "Payee address " + "0x159cA92b12F67E5676d82C238f4906692618A555";
-                document.getElementById("view-amount").innerText = "Amount " + "0";
+                document.getElementById("view-payer").innerText = "Payer address: " + "0x159cA92b12F67E5676d82C238f4906692618A555";
+                document.getElementById("view-recipient").innerText = "Payee address: " + "0x159cA92b12F67E5676d82C238f4906692618A555";
+                document.getElementById("view-amount").innerText = "Amount: " + "0";
             }
         }
 
